@@ -1,8 +1,8 @@
 'use strict';
 
-var packDir = require('../');
+var unpack = require('../../').unpack;
 
-packDir('./foo', './foo.tar.gz')
+unpack('./bar.tar.gz', './bar')
   .then(function() {
     console.log('success!');
   })

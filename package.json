@@ -1,11 +1,11 @@
 {
-  "name": "pack-dir",
+  "name": "dir-packer",
   "version": "0.0.0",
   "description": "A tool for packing directories into tar.gz files.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zkochan/pack-dir.git"
+    "url": "git+https://github.com/zkochan/dir-packer.git"
   },
   "keywords": [
     "packer",
@@ -22,9 +22,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zkochan/pack-dir/issues"
+    "url": "https://github.com/zkochan/dir-packer/issues"
   },
-  "homepage": "https://github.com/zkochan/pack-dir#readme",
+  "homepage": "https://github.com/zkochan/dir-packer#readme",
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
   },
@@ -32,7 +32,10 @@
     "fstream": "^1.0.8",
     "fstream-ignore": "^1.0.3",
     "inherits": "^2.0.1",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.4.3",
     "tar": "^2.2.1",
+    "tar.gz": "^1.0.2",
     "zlib": "^1.0.5"
   }
 }
