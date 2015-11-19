@@ -1,0 +1,36 @@
+{
+  "name": "pack-dir",
+  "version": "0.0.0",
+  "description": "A tool for packing directories into tar.gz files.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zkochan/pack-dir.git"
+  },
+  "keywords": [
+    "packer",
+    "pack",
+    "directory",
+    "tar-gz",
+    "compress",
+    "folder"
+  ],
+  "author": {
+    "name": "Zoltan Kochan",
+    "email": "zoltan.kochan@gmail.com",
+    "url": "http://kochan.io"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zkochan/pack-dir/issues"
+  },
+  "homepage": "https://github.com/zkochan/pack-dir#readme",
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
+  },
+  "dependencies": {
+    "fstream": "^1.0.8",
+    "tar": "^2.2.1",
+    "zlib": "^1.0.5"
+  }
+}
