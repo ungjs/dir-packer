@@ -93,47 +93,42 @@ Packer.prototype.emitEntry = function(entry) {
   entry.on('package', this.emit.bind(this, 'package'));
 };
 
-module.exports = function(source, target, callback, noIgnore) {
-  function returnError(err) {
-    // don't call the callback multiple times, just return the first error
-    var _callback = callback;
-    callback = function() {};
-    return _callback(err);
-  }
+module.exports = function(source, target) {
+  return new Promise(function(fulfill, reject) {
+    var fwriter = fstream.Writer({ type: 'File', path: target });
+    fwriter.on('error', function(err) {
+      log.error('writing', target);
+      return reject(err);
+    });
 
-  var fwriter = fstream.Writer({ type: 'File', path: target });
-  fwriter.on('error', function(err) {
-    log.error('writing', target);
-    return returnError(err);
-  });
+    fwriter.on('close', function() {
+      fulfill(target);
+    });
 
-  fwriter.on('close', function() {
-    callback(null, target);
-  });
+    var istream = new Packer({
+      path: source,
+      type: 'Directory',
+      ignoreFiles: [],
+      ignoreArray: [],
+      isDirectory: true
+    });
+    istream.on('error', function(err) {
+      log.error('reading', source);
+      return reject(err);
+    });
 
-  var istream = new Packer({
-    path: source,
-    type: 'Directory',
-    ignoreFiles: [],
-    ignoreArray: [],
-    isDirectory: true
-  });
-  istream.on('error', function(err) {
-    log.error('reading', source);
-    return returnError(err);
-  });
+    var packer = tar.Pack({ noProprietary: true });
+    packer.on('error', function(err) {
+      log.error('creating', target);
+      return reject(err);
+    });
 
-  var packer = tar.Pack({ noProprietary: true });
-  packer.on('error', function(err) {
-    log.error('creating', target);
-    return returnError(err);
-  });
+    var zipper = zlib.Gzip();
+    zipper.on('error', function(err) {
+      log.error('gzip', target);
+      return reject(err);
+    });
 
-  var zipper = zlib.Gzip();
-  zipper.on('error', function(err) {
-    log.error('gzip', target);
-    return returnError(err);
+    istream.pipe(packer).pipe(zipper).pipe(fwriter);
   });
-
-  istream.pipe(packer).pipe(zipper).pipe(fwriter);
 };

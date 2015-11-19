@@ -19,15 +19,14 @@ npm i --save pack-dir
 ```js
 var packDir = require('pack-dir');
 
-packDir('./src-dir', '../dest-path', function(err) {
-  if (err) {
+packDir('./src-dir', './result.tar.gz')
+  .then(function() {
+    console.log('The compression was successfull!');
+  })
+  .catch(function(err) {
     console.log('Error during compressing');
     console.log(err);
-    return;
-  }
-
-  console.log('The compression was successfull!');
-});
+  });
 ```
 
 

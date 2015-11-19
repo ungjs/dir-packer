@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "fstream": "^1.0.8",
+    "fstream-ignore": "^1.0.3",
+    "inherits": "^2.0.1",
     "tar": "^2.2.1",
     "zlib": "^1.0.5"
   }
