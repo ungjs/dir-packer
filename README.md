@@ -2,8 +2,8 @@
 
 A tool for packing directories into tar.gz files.
 
-[![Dependency Status](https://david-dm.org/zkochan/dir-packer/status.svg?style=flat)](https://david-dm.org/zkochan/dir-packer)
-[![Build Status](http://img.shields.io/travis/zkochan/dir-packer.svg?style=flat)](https://travis-ci.org/zkochan/dir-packer)
+[![Dependency Status](https://david-dm.org/ungjs/dir-packer/status.svg?style=flat)](https://david-dm.org/ungjs/dir-packer)
+[![Build Status](http://img.shields.io/travis/ungjs/dir-packer.svg?style=flat)](https://travis-ci.org/ungjs/dir-packer)
 [![npm version](https://badge.fury.io/js/dir-packer.svg)](http://badge.fury.io/js/dir-packer)
 
 
@@ -19,32 +19,22 @@ npm i --save dir-packer
 Packing a directory.
 
 ```js
-var packer = require('dir-packer');
+const packer = require('dir-packer');
 
 packer.pack('./src-dir', './result.tar.gz')
-  .then(function() {
-    console.log('The compression was successfull!');
-  })
-  .catch(function(err) {
-    console.log('Error during compressing');
-    console.log(err);
-  });
+  .then(() => console.log('The compression was successfull!'))
+  .catch((err) => console.log(err));
 ```
 
 Unpacking a directory.
 
 ```js
-var packer = require('dir-packer');
+const packer = require('dir-packer');
 
 /* will unpack the content of foo.tar.gz to the foo directory */
 packer.unpack('./foo.tar.gz', './foo')
-  .then(function() {
-    console.log('The tar successfully unpacked!');
-  })
-  .catch(function(err) {
-    console.log('Error during unpacking');
-    console.log(err);
-  });
+  .then(() => console.log('The tar successfully unpacked!'))
+  .catch((err) => console.log(err));
 ```
 
 
